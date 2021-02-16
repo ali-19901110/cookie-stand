@@ -5,6 +5,9 @@ let hours = ['6am','7pm','8am','9am','10am','11am','12am','1pm','2pm','3pm','4pm
 function randomGenrator(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
 }
+let gTotal=[0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+let table = document.getElementById('table1');
+let sumOfSum=0;
 
 
 function Location(locationName,minCustomer,maxCustomer,avgPerSale){
@@ -15,6 +18,7 @@ function Location(locationName,minCustomer,maxCustomer,avgPerSale){
     this.randomCustomers=[];
     this.numOfCookiesSoldPerHour= [];
     this.total = 0;
+   
     }
     Location.prototype.randomCustomerPerHour=function(){
                 for(let i = 0 ; i < hours.length ; i++){
@@ -25,13 +29,11 @@ function Location(locationName,minCustomer,maxCustomer,avgPerSale){
                for(let i = 0 ; i < hours.length; i++){
                 this.numOfCookiesSoldPerHour.push(Math.ceil(this.randomCustomers[i]*this.avg));
                 this.total = this.total + this.numOfCookiesSoldPerHour[i];
-                       
+                gTotal[i]=  gTotal[i]+this.numOfCookiesSoldPerHour[i];   
                      }
-                }
+                }          
     Location.prototype.render = function(){
-
-                  
-                  let table = document.getElementById('table1');
+                   table = document.getElementById('table1');
                    let tr1=document.createElement('tr');
                    table.appendChild(tr1);
                    let td1 =document.createElement('td')
@@ -41,31 +43,78 @@ function Location(locationName,minCustomer,maxCustomer,avgPerSale){
                    for(let i=0;i<hours.length;i++){
                     td2=document.createElement('td');
                     tr1.appendChild(td2);
-                    td2.textContent=this.randomCustomers[i];
+                    td2.textContent=this.numOfCookiesSoldPerHour[i];
                    }
                    let td3=document.createElement('td');
                    tr1.appendChild(td3);
                    td3.textContent=this.total;
-
+                    
                 }
-               let Seattle = new Location('seattle',23,65, 6.3);    
+
+         function header(){
+          table = document.getElementById('table1');
+            let trh =document.createElement('tr');
+            table1.appendChild(trh);
+            let thEl;
+            thEl=document.createElement('th');
+            trh.appendChild(thEl);
+           
+            for(let i=0;i<hours.length;i++){
+              thEl=document.createElement('th');
+            trh.appendChild(thEl);
+            thEl.textContent=hours[i];
+                         }
+                         thEl=document.createElement('th');
+                         trh.appendChild(thEl);
+                         thEl.textContent='Daily Location Total';
+           }  
+           
+          function footer(){
+            table = document.getElementById('table1');
+            let trf=document.createElement('tr');
+            table1.appendChild(trf);
+            let thEl;
+            thEl=document.createElement('th');
+            trf.appendChild(thEl);
+            thEl.textContent="Totals";
+            for(let i=0;i<gTotal.length;i++){
+              sumOfSum +=gTotal[i];
+            thEl=document.createElement('th');
+            trf.appendChild(thEl);
+            thEl.textContent=gTotal[i];
+            }
+            thEl=document.createElement('th');
+            trf.appendChild(thEl);
+            thEl.textContent=sumOfSum;
+          } 
+               header(); 
+               let Seattle = new Location('seattle',23,65, 6.3);  
+                
                Seattle.randomCustomerPerHour();
                Seattle.cookiesSoldPerHour();
                Seattle.render();
+              
                let Tokyo = new Location('Tokyo',3,24, 1.2);    
                Tokyo.randomCustomerPerHour();
                Tokyo.cookiesSoldPerHour();
                Tokyo.render();
+               
                let Dubai = new Location('Dubai',11,38,3.7);    
                Dubai.randomCustomerPerHour();
                Dubai.cookiesSoldPerHour();
                Dubai.render();
+               
                let Paris = new Location('Paris',20,38,2.3);    
                Paris.randomCustomerPerHour();
                Paris.cookiesSoldPerHour();
                Paris.render();
+               
                let Lima = new Location('Lima',2,16,4.6);    
                Lima.randomCustomerPerHour();
                Lima.cookiesSoldPerHour();
                Lima.render();
+               footer();
+             console.log(gTotal);
+       
                
+        
