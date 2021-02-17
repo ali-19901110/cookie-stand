@@ -1,13 +1,13 @@
 'use strict';
              
 let hours = ['6am','7pm','8am','9am','10am','11am','12am','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
-// let container = document.getElementById('container');
 function randomGenrator(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
 }
 let gTotal=[0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 let table = document.getElementById('table1');
-let sumOfSum=0;
+let newLocation ;
+let arr=[];
 
 
 function Location(locationName,minCustomer,maxCustomer,avgPerSale){
@@ -18,6 +18,7 @@ function Location(locationName,minCustomer,maxCustomer,avgPerSale){
     this.randomCustomers=[];
     this.numOfCookiesSoldPerHour= [];
     this.total = 0;
+    arr.push(this);
    
     }
     Location.prototype.randomCustomerPerHour=function(){
@@ -77,6 +78,7 @@ function Location(locationName,minCustomer,maxCustomer,avgPerSale){
             thEl=document.createElement('th');
             trf.appendChild(thEl);
             thEl.textContent="Totals";
+            let sumOfSum=0;
             for(let i=0;i<gTotal.length;i++){
               sumOfSum +=gTotal[i];
             thEl=document.createElement('th');
@@ -89,32 +91,46 @@ function Location(locationName,minCustomer,maxCustomer,avgPerSale){
           } 
                header(); 
                let Seattle = new Location('seattle',23,65, 6.3);  
-                
-               Seattle.randomCustomerPerHour();
-               Seattle.cookiesSoldPerHour();
-               Seattle.render();
-              
                let Tokyo = new Location('Tokyo',3,24, 1.2);    
-               Tokyo.randomCustomerPerHour();
-               Tokyo.cookiesSoldPerHour();
-               Tokyo.render();
-               
                let Dubai = new Location('Dubai',11,38,3.7);    
-               Dubai.randomCustomerPerHour();
-               Dubai.cookiesSoldPerHour();
-               Dubai.render();
-               
                let Paris = new Location('Paris',20,38,2.3);    
-               Paris.randomCustomerPerHour();
-               Paris.cookiesSoldPerHour();
-               Paris.render();
+               let Lima = new Location('Lima',2,16,4.6);  
+
+              for(let i=0;i<arr.length;i++){
+                arr[i].randomCustomerPerHour();
+                arr[i].cookiesSoldPerHour();
+                arr[i].render();
+              }
+
+            function deleterow(tableID) {
+              let table = document.getElementById(tableID);
+              let rowCount = table.rows.length;
+          
+              table.deleteRow(rowCount -2);
+          }
+
+            const form =document.getElementById('locationform');
+            form.addEventListener('submit',locationcreate);
+            function locationcreate(event){
+              event.preventDefault();
+              // for(let i=0;i<arr.length;i++){
+              //   if(arr[i][0]===locationName){
+
+              //   }
+              // }
+              const locationName =event.target.nameField.value;
+              const minCustomer =event.target.minField.value;
+              const maxCustomer =event.target.maxField.value;
+              const avgCustomer =event.target.avgField.value;
                
-               let Lima = new Location('Lima',2,16,4.6);    
-               Lima.randomCustomerPerHour();
-               Lima.cookiesSoldPerHour();
-               Lima.render();
-               footer();
-             console.log(gTotal);
+               newLocation = new Location(locationName, minCustomer, maxCustomer, avgCustomer);
+                newLocation.randomCustomerPerHour();
+                newLocation.cookiesSoldPerHour();
+                newLocation.render();
+                deleterow('table1');
+                footer();
+            }
+           
        
-               
-        
+            footer();
+        // console.log(arr[4].name);
