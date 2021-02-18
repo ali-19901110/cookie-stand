@@ -112,17 +112,15 @@ function Location(locationName,minCustomer,maxCustomer,avgPerSale){
             const form =document.getElementById('locationform');
             form.addEventListener('submit',locationcreate);
             function locationcreate(event){
-              event.preventDefault();
-              // for(let i=0;i<arr.length;i++){
-              //   if(arr[i][0]===locationName){
-
-              //   }
-              // }
+                  event.preventDefault();
+          
               const locationName =event.target.nameField.value;
-              const minCustomer =event.target.minField.value;
-              const maxCustomer =event.target.maxField.value;
-              const avgCustomer =event.target.avgField.value;
-               
+              let minCustomer =event.target.minField.value;
+                    minCustomer =parseInt(minCustomer);
+              let maxCustomer =event.target.maxField.value;
+                    maxCustomer =parseInt(maxCustomer);           
+              let avgCustomer =event.target.avgField.value;
+                    avgCustomer =parseFloat(avgCustomer);
                newLocation = new Location(locationName, minCustomer, maxCustomer, avgCustomer);
                 newLocation.randomCustomerPerHour();
                 newLocation.cookiesSoldPerHour();
@@ -133,4 +131,4 @@ function Location(locationName,minCustomer,maxCustomer,avgPerSale){
            
        
             footer();
-        // console.log(arr[4].name);
+        // console.log(arr[0][0]);
