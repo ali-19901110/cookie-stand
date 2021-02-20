@@ -1,5 +1,9 @@
+ /* *{
+     box-sizing: border-box;
+ } */
+
  body{background-color:azure;} 
-table{
+ table{
     border: 1px solid black;
 
 }
@@ -13,23 +17,39 @@ th, td {
     background-color:skyblue;
 }
 nav img{
-    width: 200px;
+    width: 150px;
     height: 80px;
+    border-radius:50%;
 }
 nav{
     position: relative;
     margin: 20px;
-    margin-left: 200px;
+    margin-left:10px;
     padding-top: 15px;
     
 }
+nav p{
+    position: absolute;
+    top: 50px;
+    left: 150px;
+    color: white;
+    font-family: 'Sofia', cursive;
+    font-size:x-large;
+}
 ul li{
-    display: inline;
+    display: inline-block;
     float: right;
-     position: relative;
+    position: relative;
     bottom: 60px;
     margin-left:100px ;
-    right: 200px;    
+    right: 200px;
+    font-family: 'Sofia', cursive;  
+    font-size:x-large;
+   
+
+}
+ul a:hover{
+    color:goldenrod;
 }
 ul li a{
 text-decoration: none;
@@ -62,21 +82,99 @@ main article img{
   
 }
 article p{
-    margin-right: 200px;
+    margin-right: 150px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
-article button{
-    margin-top: 15px;
-    background-color: black;
-    color: white;
-    width: 150px;
-    height: 30px;
-}
 
 footer{
     width: 100%;
-    height: 100px;
+    height: 200px;
     background-color:skyblue;
     margin-top: 30px;
 }
 
+footer .divfooter{
+    width: 50%;
+  float: left;
+}
+.divfooter a{
+    text-decoration: none;
+   
+}
+.divfooter p{
+    padding-bottom: 10px;
+    color: white;
+}
+.divfooter .afooter{
+    width: 100%;
+    height: 20px;
+    display:inline-block;
+    color: white;
+  
+}
+footer:nth-last-child(2){
+    color: white;
+    font-size: large;
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  } 
+  input[type=number], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  } 
+  input[type=decimal], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  } 
+   
+  input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  } 
+   
+  input[type=submit]:hover {
+    background-color: #45a049;
+  } 
+  
+   #divform {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+  } 
+
+  table{
+      width: 85%;
+      margin-left: 200px;
+      margin-top: 10px;
+  }
+header #asalespage{
+    text-decoration: none;
+    color: white;
+    font-family: 'Sofia', cursive;  
+    font-size:x-large;
+}
